@@ -1,5 +1,7 @@
 # Azure to AWS Migration Assessment Skill
 
+> 🌐 [中文文档](./README.zh.md)
+
 AI-driven migration assessment from Microsoft Azure to Amazon Web Services, powered by Kiro CLI agent skills.
 
 ## Overview
@@ -42,7 +44,6 @@ azure2aws/
 │               ├── clarify-questions.md
 │               ├── output-schema.md
 │               ├── service-mapping.md
-│               ├── pricing-fallback.json
 │               ├── complexity-ratings.md
 │               ├── license-guidance.md
 │               └── cloudrays-integration.md
@@ -61,7 +62,8 @@ azure2aws/
 │   ├── package.json
 │   └── README.md
 ├── .mcp.json                             # MCP Server configuration
-└── README.md                             # This file
+├── README.md                             # This file (English)
+└── README.zh.md                          # Chinese version
 ```
 
 ## Prerequisites

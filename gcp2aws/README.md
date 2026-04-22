@@ -1,5 +1,7 @@
 # GCP-to-AWS Migration Plugin
 
+> 🌐 [中文文档](./README.zh.md)
+
 Migrate workloads from Google Cloud Platform to AWS with a 5-phase guided process.
 
 ## Overview
