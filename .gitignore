@@ -2,3 +2,4 @@ node_modules/
 .migration/
 *.pdf
 .DS_Store
+doc/
