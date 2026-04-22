@@ -1,0 +1,61 @@
+{
+  "mcpServers": {
+    "azure-mcp": {
+      "command": "npx",
+      "args": ["-y", "@azure/mcp@latest", "server", "start"],
+      "env": {},
+      "timeout": 120000,
+      "type": "stdio"
+    },
+    "awsknowledge": {
+      "type": "http",
+      "url": "https://knowledge-mcp.global.api.aws"
+    },
+    "awspricing": {
+      "command": "uvx",
+      "args": ["awslabs.aws-pricing-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "timeout": 120000,
+      "type": "stdio"
+    },
+    "aws-documentation": {
+      "command": "uvx",
+      "args": ["awslabs.aws-documentation-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "timeout": 60000,
+      "type": "stdio"
+    },
+    "aws-diagram": {
+      "command": "uvx",
+      "args": ["awslabs.aws-diagram-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "timeout": 60000,
+      "type": "stdio"
+    },
+    "cost-analysis": {
+      "command": "uvx",
+      "args": ["awslabs.cost-analysis-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "timeout": 60000,
+      "type": "stdio"
+    },
+    "cloudrays": {
+      "command": "node",
+      "args": ["cloudrays-mcp-wrapper/index.js"],
+      "env": {
+        "CLOUDRAYS_REPO": "https://github.com/awslabs/resource-discovery-for-azure.git",
+        "CLOUDRAYS_WORK_DIR": "/tmp/cloudrays"
+      },
+      "timeout": 300000,
+      "type": "stdio"
+    }
+  }
+}

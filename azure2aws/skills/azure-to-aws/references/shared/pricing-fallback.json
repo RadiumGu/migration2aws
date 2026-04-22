@@ -1,0 +1,199 @@
+{
+  "_comment": "Static fallback pricing for Top 20 AWS services. Used when awspricing MCP is unavailable. Prices are US East (N. Virginia) on-demand, USD/hour or USD/GB-month. Last updated: 2026-04-22. Accuracy: ±15-25%.",
+  "_usage": "Agent reads this file when awspricing returns errors after 3 attempts. Set pricing_source.status='fallback' in estimation.json.",
+  "compute": {
+    "ec2": {
+      "t3.micro":    { "vcpu": 2, "memory_gb": 1,   "price_per_hour": 0.0104, "region": "us-east-1" },
+      "t3.small":    { "vcpu": 2, "memory_gb": 2,   "price_per_hour": 0.0208, "region": "us-east-1" },
+      "t3.medium":   { "vcpu": 2, "memory_gb": 4,   "price_per_hour": 0.0416, "region": "us-east-1" },
+      "t3.large":    { "vcpu": 2, "memory_gb": 8,   "price_per_hour": 0.0832, "region": "us-east-1" },
+      "m6g.large":   { "vcpu": 2, "memory_gb": 8,   "price_per_hour": 0.077,  "region": "us-east-1" },
+      "m6g.xlarge":  { "vcpu": 4, "memory_gb": 16,  "price_per_hour": 0.154,  "region": "us-east-1" },
+      "m6i.large":   { "vcpu": 2, "memory_gb": 8,   "price_per_hour": 0.096,  "region": "us-east-1" },
+      "m6i.xlarge":  { "vcpu": 4, "memory_gb": 16,  "price_per_hour": 0.192,  "region": "us-east-1" },
+      "c6g.large":   { "vcpu": 2, "memory_gb": 4,   "price_per_hour": 0.068,  "region": "us-east-1" },
+      "c6g.xlarge":  { "vcpu": 4, "memory_gb": 8,   "price_per_hour": 0.136,  "region": "us-east-1" },
+      "r6g.large":   { "vcpu": 2, "memory_gb": 16,  "price_per_hour": 0.1008, "region": "us-east-1" },
+      "r6g.xlarge":  { "vcpu": 4, "memory_gb": 32,  "price_per_hour": 0.2016, "region": "us-east-1" }
+    },
+    "lambda": {
+      "price_per_gb_second": 0.0000166667,
+      "price_per_request": 0.0000002,
+      "free_tier_requests": 1000000,
+      "free_tier_gb_seconds": 400000
+    },
+    "fargate": {
+      "price_per_vcpu_hour": 0.04048,
+      "price_per_gb_hour": 0.004445,
+      "spot_discount_pct": 70
+    },
+    "ecs_ec2": {
+      "_note": "No additional charge beyond EC2 instances"
+    }
+  },
+  "containers": {
+    "eks": {
+      "cluster_price_per_hour": 0.10,
+      "_note": "Plus EC2/Fargate node costs"
+    },
+    "ecr": {
+      "storage_per_gb_month": 0.10,
+      "data_transfer_per_gb": 0.09
+    }
+  },
+  "database": {
+    "rds_mysql": {
+      "db.t3.micro":  { "price_per_hour": 0.017,  "region": "us-east-1" },
+      "db.t3.small":  { "price_per_hour": 0.034,  "region": "us-east-1" },
+      "db.t3.medium": { "price_per_hour": 0.068,  "region": "us-east-1" },
+      "db.r6g.large": { "price_per_hour": 0.26,   "region": "us-east-1" }
+    },
+    "rds_postgresql": {
+      "db.t3.micro":  { "price_per_hour": 0.018,  "region": "us-east-1" },
+      "db.t3.small":  { "price_per_hour": 0.036,  "region": "us-east-1" },
+      "db.t3.medium": { "price_per_hour": 0.072,  "region": "us-east-1" },
+      "db.r6g.large": { "price_per_hour": 0.26,   "region": "us-east-1" }
+    },
+    "rds_sqlserver_se": {
+      "db.r6i.large":  { "price_per_hour": 1.046, "region": "us-east-1", "_note": "License included" },
+      "db.r6i.xlarge": { "price_per_hour": 2.092, "region": "us-east-1", "_note": "License included" }
+    },
+    "aurora_mysql": {
+      "serverless_v2_acu_price": 0.12,
+      "db.r6g.large":  { "price_per_hour": 0.29,  "region": "us-east-1" },
+      "storage_per_gb_month": 0.10,
+      "io_per_million": 0.20
+    },
+    "aurora_postgresql": {
+      "serverless_v2_acu_price": 0.12,
+      "db.r6g.large":  { "price_per_hour": 0.29,  "region": "us-east-1" },
+      "storage_per_gb_month": 0.10,
+      "io_per_million": 0.20
+    },
+    "dynamodb": {
+      "wcu_per_month": 0.00065,
+      "rcu_per_month": 0.00013,
+      "storage_per_gb_month": 0.25,
+      "on_demand_wru_per_million": 1.25,
+      "on_demand_rru_per_million": 0.25
+    },
+    "elasticache_redis": {
+      "cache.t3.micro":  { "price_per_hour": 0.017, "region": "us-east-1" },
+      "cache.t3.small":  { "price_per_hour": 0.034, "region": "us-east-1" },
+      "cache.r6g.large": { "price_per_hour": 0.226, "region": "us-east-1" }
+    }
+  },
+  "storage": {
+    "s3": {
+      "standard_per_gb_month": 0.023,
+      "standard_ia_per_gb_month": 0.0125,
+      "glacier_per_gb_month": 0.004,
+      "put_per_1000": 0.005,
+      "get_per_1000": 0.0004
+    },
+    "ebs": {
+      "gp3_per_gb_month": 0.08,
+      "io2_per_gb_month": 0.125,
+      "io2_per_iops_month": 0.065,
+      "st1_per_gb_month": 0.045
+    },
+    "efs": {
+      "standard_per_gb_month": 0.30,
+      "ia_per_gb_month": 0.025
+    }
+  },
+  "networking": {
+    "alb": {
+      "price_per_hour": 0.0225,
+      "lcu_price_per_hour": 0.008
+    },
+    "nlb": {
+      "price_per_hour": 0.0225,
+      "nlcu_price_per_hour": 0.006
+    },
+    "nat_gateway": {
+      "price_per_hour": 0.045,
+      "price_per_gb": 0.045
+    },
+    "vpc": {
+      "_note": "No charge for VPC itself",
+      "vpn_per_hour": 0.05,
+      "transit_gateway_per_hour": 0.05,
+      "transit_gateway_per_gb": 0.02
+    },
+    "cloudfront": {
+      "price_per_gb_us_eu": 0.085,
+      "price_per_10k_requests_http": 0.01,
+      "price_per_10k_requests_https": 0.012
+    },
+    "route53": {
+      "hosted_zone_per_month": 0.50,
+      "queries_per_million": 0.40
+    }
+  },
+  "security_identity": {
+    "iam_identity_center": {
+      "_note": "No additional charge"
+    },
+    "cognito": {
+      "price_per_mau_first_50k": 0.0055,
+      "price_per_mau_50k_100k": 0.0046
+    },
+    "kms": {
+      "key_per_month": 1.00,
+      "api_per_10k": 0.03
+    },
+    "waf": {
+      "web_acl_per_month": 5.00,
+      "rule_per_month": 1.00,
+      "request_per_million": 0.60
+    },
+    "secrets_manager": {
+      "secret_per_month": 0.40,
+      "api_per_10k": 0.05
+    }
+  },
+  "integration": {
+    "sqs": {
+      "standard_per_million": 0.40,
+      "fifo_per_million": 0.50
+    },
+    "sns": {
+      "publish_per_million": 0.50,
+      "http_delivery_per_million": 0.60
+    },
+    "eventbridge": {
+      "custom_events_per_million": 1.00
+    },
+    "api_gateway": {
+      "rest_per_million": 3.50,
+      "http_per_million": 1.00,
+      "websocket_per_million": 1.00
+    },
+    "step_functions": {
+      "standard_per_1000_transitions": 0.025,
+      "express_per_million": 1.00
+    }
+  },
+  "monitoring": {
+    "cloudwatch": {
+      "metrics_per_month_first_10k": 0.30,
+      "logs_ingestion_per_gb": 0.50,
+      "logs_storage_per_gb": 0.03,
+      "dashboard_per_month": 3.00
+    }
+  },
+  "region_multipliers": {
+    "_note": "Approximate multiplier vs us-east-1 for quick cross-region estimates",
+    "us-west-2": 1.0,
+    "eu-west-1": 1.05,
+    "eu-central-1": 1.08,
+    "ap-northeast-1": 1.15,
+    "ap-southeast-1": 1.08,
+    "ap-southeast-2": 1.10,
+    "sa-east-1": 1.40,
+    "ca-central-1": 1.02,
+    "cn-north-1": 1.20,
+    "cn-northwest-1": 1.20
+  }
+}
